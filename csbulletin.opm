@@ -1,0 +1,37 @@
+% CSTUG bulletin experimental OpTeX style
+% Filename: csbulletin.opm
+% 
+% 07-12-2021
+
+% Load microtypographic extensions
+\load[mte]
+\enablemte
+
+% Load Latin Modern
+\fontfam[lm] 
+\report
+\typosize[10/12]
+
+% Section heads
+\_def\_secfont{\_typosize[14/18]\_bf}
+
+% Layout
+\margins/2 a5 (10,16,14,21.5)mm
+\footlinedist=8.5mm
+\footline = {%
+  \ifodd\pageno
+    \_hss\_rmfixed\_folio
+  \else
+    \_rmfixed\_folio\_hss
+  \fi
+}
+
+% Load metadata
+\catcode`\@11\relax
+\def\csbul@start@page#1{\pageno=#1}
+\def\csbul@colortrue{\let\csbul@color\relax}
+\def\csbul@webtrue{\let\csbul@web\relax}
+\isfile{\jobname.info}\iftrue
+  \input\jobname.info\relax
+\fi
+\catcode`\@12\relax
